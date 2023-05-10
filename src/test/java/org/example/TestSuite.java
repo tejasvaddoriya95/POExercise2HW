@@ -20,6 +20,17 @@ public class TestSuite extends BaseTest {
     RegestrationPage regestrationPage = new RegestrationPage();
 
     RegisterResultPage registerResultPage = new RegisterResultPage();
+    Nike nike = new Nike();
+    Adidas adidas = new Adidas();
+    NewRelease newRelease = new NewRelease();
+    BuildYourOwnComputer buildYourOwnComputer = new BuildYourOwnComputer();
+    Checkout checkout = new Checkout();
+    BillingDetails billingDetails = new BillingDetails();
+    ShippingMethod shippingMethod = new ShippingMethod();
+    PaymentMethod paymentMethod = new PaymentMethod();
+    PaymentCardDetail paymentCardDetail = new PaymentCardDetail();
+    ConformationOfOrder conformationOfOrder = new ConformationOfOrder();
+    Facebook facebook = new Facebook();
 
     @Test
     public void a_toVerifyNonRegisteredUserShouldNotBeAbleToVote() {
@@ -81,6 +92,67 @@ public class TestSuite extends BaseTest {
         userLogin.Logindetails();
         homePage.communityPoll();
         homePage.communitypollVoteMessage();
+    }
+    @Test
+    public void prictproductTitle(){
+        homePage.printproducttitle();
+    }
+
+    @Test
+    public void searchButtonError(){
+        homePage.searchButtonError();
+
+    }
+    @Test
+    public void verifyPriceListedInCurrencySelectedFromCurrencySelector(){
+        homePage.verifyProductPriceAreDisplayedAsPerSelectedCurrency();
+    }
+    @Test
+    public void verifyUserShouldBeAbleToSearchProductAccordingly(){
+        //search the product
+        homePage.searchTheProductAndClikOnSearchButton();
+        //verify products are displayed accordingly
+        nike.verifyNikeProductAreDisplayed();
+        //search another product
+        homePage.searchAdidasProductAndClickOnSearchButton();
+        adidas.verifyAdidasProductAreDisplayed();
+    }
+    @Test
+    public void verifyGuestUserShouldBeAbleToLeaveComment(){
+        homePage.clickOnNewRelease();
+        newRelease.typeComment();
+        newRelease.verifyCommentAddedSuccessfullyOrNot();
+        newRelease.verifyCommentIsDisplayedAtLast();
+    }
+    @Test
+    public void verifyGuestUserShouldBeAbleToCheckoutSuccessfully(){
+        homePage.clickOnBuildYourOwnComputer();
+        buildYourOwnComputer.selectConfiguration();
+        buildYourOwnComputer.addProducttoCart();
+        buildYourOwnComputer.ShoppingCart();
+        buildYourOwnComputer.addProducttoCart();
+        buildYourOwnComputer.ShoppingCart();
+        shoppingCart.BuildYourOwnComputerIsAddedToCart();
+        shoppingCart.clickOnTermsAndConditionsAndCheckout();
+        checkout.clickonCheckoutAsGuest();
+        billingDetails.submitBillingDetails();
+        billingDetails.handlePopUp();
+        paymentMethod.selectPaymentMethod();
+        paymentCardDetail.submitCardDetails();
+        paymentCardDetail.alertMessage();
+        billingDetails.confirmCheckout();
+        conformationOfOrder.verifyOrderConformation();
+
+
+    }
+    @Test
+    public void b_verifyWhenUserClicksOnFacebookUserShouldBeNavigatedToFacebookPage(){
+        homePage.clickOnFacebook();
+        facebook.verufyFacebookPage();
+    }
+    @Test
+    public void verifyVoteAlert(){
+        homePage.verifyVoteAlert();
     }
 
 
